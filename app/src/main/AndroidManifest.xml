@@ -16,16 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SignUp" />
-        <activity android:name=".BookingDetail" />
-        <activity android:name=".LaundryDetail" />
-        <activity android:name=".Location" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".BookingDetailActivity" />
+        <activity android:name=".LaundryDetailActvity" />
+        <activity android:name=".LocationActivity" />
         <activity
             android:name=".PromoActivity"
             android:label="@string/title_activity_promo"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".PickupDelivery" />
-        <activity android:name=".MyOrder"></activity>
+        <activity android:name=".PickupDeliveryActivity" />
+        <activity android:name=".MyOrderActivity"></activity>
     </application>
 
 </manifest>

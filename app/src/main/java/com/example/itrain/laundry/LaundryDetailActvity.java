@@ -6,29 +6,30 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class PickupDelivery extends AppCompatActivity{
+public class LaundryDetailActvity extends AppCompatActivity{
 
-    Button btn1, btn2;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_pickup_delivery);
+        setContentView(R.layout.activity_laundry_detail);
 
-        btn1 = (Button) findViewById(R.id.next);
-        btn2 = (Button) findViewById(R.id.back);
+        Button btn1 = (Button)findViewById(R.id.next);
+        Button btn2 = (Button)findViewById(R.id.back);
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PickupDelivery.this, BookingDetail.class);
+                Intent intent = new Intent(LaundryDetailActvity.this, PickupDeliveryActivity.class);
                 startActivity(intent);
             }
         });
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(PickupDelivery.this, LaundryDetail.class);
+                Intent intent = new Intent(LaundryDetailActvity.this, LocationActivity.class);
                 startActivity(intent);
             }
         });
+
+
     }
 }

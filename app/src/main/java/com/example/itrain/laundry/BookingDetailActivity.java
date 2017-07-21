@@ -6,19 +6,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class Location extends AppCompatActivity {
+public class BookingDetailActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_location);
-        Button btn = (Button) findViewById(R.id.next);
+        setContentView(R.layout.activity_booking);
+
+        Button btn = (Button)findViewById(R.id.confirm);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Location.this, LaundryDetail.class);
+                Intent intent = new Intent(BookingDetailActivity.this, MyOrderActivity.class);
                 startActivity(intent);
             }
         });
+
+
     }
 }
