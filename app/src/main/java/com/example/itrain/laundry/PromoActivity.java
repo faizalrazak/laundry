@@ -2,6 +2,8 @@ package com.example.itrain.laundry;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,7 +16,12 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.Toast;
 
-public class PromoActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class PromoActivity extends AppCompatActivity implements
+
+    //Note : OnFragmentInteractionListener of all the fragments
+    AboutUsFragment.OnFragmentInteractionListener,
+
+        NavigationView.OnNavigationItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +32,6 @@ public class PromoActivity extends AppCompatActivity implements NavigationView.O
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(getApplicationContext(),"Clicked", Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(PromoActivity.this, LocationActivity.class);
                 startActivity(intent);
             }
@@ -35,13 +41,24 @@ public class PromoActivity extends AppCompatActivity implements NavigationView.O
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        navigationView.setCheckedItem(R.id.nav_about_us);
+
+        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.mainFrame, new AboutUsFragment());
+        ft.commit();
+    }
+
+    @Override
+    public void onFragmentInteraction(String title) {
+// NOTE:  Code to replace the toolbar title based current visible fragment
+        getSupportActionBar().setTitle(title);
     }
 
     @Override
@@ -82,22 +99,26 @@ public class PromoActivity extends AppCompatActivity implements NavigationView.O
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
+        Fragment fragment = null;
+
+        if (id == R.id.nav_about_us) {
+            fragment = new AboutUsFragment();
         } else if (id == R.id.nav_gallery) {
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        } else if (id == R.id.nav_camera) {
 
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+        //NOTE: Fragment changing code
+        if (fragment != null) {
+            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            ft.replace(R.id.mainFrame, fragment);
+            ft.commit();
+        }
+
+            DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+        }
+
     }
-}

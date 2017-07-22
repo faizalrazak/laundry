@@ -10,11 +10,12 @@
     tools:context="com.example.itrain.laundry.PromoActivity"
     tools:showIn="@layout/app_bar_promo">
 
-    <ImageView
+    <!-- Note : This is the container Frame Layout for all the fragmetns-->
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:src="@drawable/mesin"/>
+        android:layout_height="match_parent"
+        android:id="@+id/mainFrame">
+    </FrameLayout>
 
     <Button
         android:id="@+id/next"
